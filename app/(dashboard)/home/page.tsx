@@ -7,6 +7,7 @@ import { Class } from '@/types/class';
 import NavBar from '@/components/layout/NavBar';
 import ClassCard from '@/components/class/ClassCard';
 import { useRouter } from 'next/navigation';
+import Footer from '@/components/layout/Footer';
 
 export default function HomePage() {
   const { user, loading } = useAuth();
@@ -142,6 +143,7 @@ export default function HomePage() {
           </div>
         </section>
       </div>
+      <Footer/>
     </div>
   );
 }

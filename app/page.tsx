@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useEffect } from 'react';
 import NavBar from '@/components/layout/NavBar';
-// import Footer from '@/components/layout/Footer';
+import Footer from '@/components/layout/Footer';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -97,8 +97,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* <Footer /> */}
+      <Footer/>
     </div>
   );
 }
