@@ -14,6 +14,7 @@ export default function HomePage() {
   const router = useRouter();
   const [classes, setClasses] = useState<Class[]>([]);
   const [loadingClasses, setLoadingClasses] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -23,25 +24,35 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchClasses = async () => {
+      if (!user) return;
+      
       try {
+        setLoadingClasses(true);
+        setError(null);
+        console.log('Fetching classes...');
+        
         const classesData = await getClasses();
-        setClasses(classesData);
+        console.log('Classes fetched:', classesData);
+        
+        setClasses(classesData || []);
       } catch (error) {
         console.error('Error fetching classes:', error);
+        setError('Failed to load classes. Please try again.');
+        setClasses([]);
       } finally {
         setLoadingClasses(false);
       }
     };
 
-    if (user) {
-      fetchClasses();
-    }
+    fetchClasses();
   }, [user]);
 
   if (loading || !user) {
-    return <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-    </div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      </div>
+    );
   }
 
   return (
@@ -87,28 +98,64 @@ export default function HomePage() {
             )}
           </div>
 
+          {/* Error Display */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+              <p className="text-red-600">{error}</p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="mt-2 text-red-700 underline hover:text-red-800"
+              >
+                Reload Page
+              </button>
+            </div>
+          )}
+
+          {/* Loading State */}
           {loadingClasses ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-white rounded-xl h-64 animate-pulse"></div>
+                <div key={i} className="bg-white rounded-xl h-64 animate-pulse shadow-lg"></div>
               ))}
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {classes.map((classItem, index) => (
-                <motion.div
-                  key={classItem.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <ClassCard 
-                    classData={classItem}
-                    onClick={() => router.push(`/class/${classItem.id}`)}
-                  />
-                </motion.div>
-              ))}
-            </div>
+            <>
+              {/* Classes Grid */}
+              {classes.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {classes.map((classItem, index) => (
+                    <motion.div
+                      key={classItem.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <ClassCard 
+                        classData={classItem}
+                        onClick={() => router.push(`/class/${classItem.id}`)}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                /* No Classes Found */
+                <div className="text-center py-12">
+                  <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-gray-400 text-2xl">📚</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">No Classes Available</h3>
+                  <p className="text-gray-600 mb-4">There are currently no classes available.</p>
+                  {user?.isAdmin && (
+                    <button
+                      onClick={() => router.push('/admin')}
+                      className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      Add New Class
+                    </button>
+                  )}
+                </div>
+              )}
+            </>
           )}
         </section>
 
