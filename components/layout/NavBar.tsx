@@ -45,7 +45,7 @@ export default function NavBar({ showAuth = false }: NavBarProps) {
               whileHover={{ scale: 1.05 }}
               className="text-2xl font-extrabold text-blue-600 tracking-wide"
             >
-              EduClass
+              EduClas
             </motion.h1>
           </Link>
 
