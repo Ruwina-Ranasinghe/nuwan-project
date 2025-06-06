@@ -22,11 +22,36 @@ export default function LandingPage() {
     </div>;
   }
 
+  // Teacher data with poster images
+  const teachers = [
+    {
+      id: 1,
+      name: "රංග ප්‍රභාත්",
+      subject: "Business Studies",
+      poster: "/teacher-posters/ranga.jpg",
+      // description: "Expert in Financial Accounting & Management"
+    },
+    {
+      id: 2,
+      name: "සාලිය බණ්ඩාර",
+      subject: "Economics",
+      poster: "/teacher-posters/saliya.jpg", 
+      // description: "Corporate Finance & Economics"
+    },
+    {
+      id: 3,
+      name: "සසිඳු බණ්ඩාර",
+      subject: "Accountiing",
+      poster: "/teacher-posters/sasindu.jpg",
+      // description: "Statistics & Business Mathematics"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <NavBar showAuth={true} />
 
-      {/* Hero Section */}
+{/* Hero Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           {/* Desktop Layout - Grid with content left, image right */}
@@ -38,18 +63,34 @@ export default function LandingPage() {
               transition={{ duration: 0.8 }}
               className="text-left"
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-  ACCOUNTING <br />with{' '}<br />
-  <span className="font-sinhala text-blue-600">
-    නුවන් අබේරත්න
-  </span>
-</h1>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{
+                textShadow: `
+                  1px 1px 0px #e5e7eb,
+                  2px 2px 0px #d1d5db,
+                  3px 3px 0px #9ca3af,
+                  4px 4px 8px rgba(0,0,0,0.15)
+                `,
+                color: '#1f2937',
+                letterSpacing: '-0.02em'
+              }}>
+                ACCOUNTING <br />with{' '}<br />
+                <span className="font-sinhala" style={{
+                  textShadow: `
+                    1px 1px 0px #dbeafe,
+                    2px 2px 0px #bfdbfe,
+                    3px 3px 0px #93c5fd,
+                    4px 4px 8px rgba(59,130,246,0.2)
+                  `,
+                  color: '#1d4ed8',
+                  letterSpacing: '0.01em'
+                }}>
+                  නුවන් <br />අබේරත්න
+                </span>
+              </h1>
 
-
-             <p className="text-sm md:text-base text-gray-600 mb-8">
-  "ගිණුම්කරණයේ ගැඹුරු හැඟීම් තාක්ෂණයෙන් සරල කරමින්, සිසුන්ට නව දැනුමක් ගෙනෙන නව යුගයේ වෙබ් යෙදුමක්!"
-</p>
-
+              <p className="text-sm md:text-base text-gray-600 mb-8">
+                "ගිණුම්කරණයේ ගැඹුරු හැඟීම් තාක්ෂණයෙන් සරල කරමින්, සිසුන්ට නව දැනුමක් ගෙනෙන නව යුගයේ වෙබ් යෙදුමක්!"
+              </p>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -93,9 +134,27 @@ export default function LandingPage() {
               transition={{ duration: 0.8 }}
               className="text-center relative z-10 py-8 w-full"
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{
+                textShadow: `
+                  1px 1px 0px #e5e7eb,
+                  2px 2px 0px #d1d5db,
+                  3px 3px 0px #9ca3af,
+                  4px 4px 8px rgba(0,0,0,0.15)
+                `,
+                color: '#1f2937',
+                letterSpacing: '-0.02em'
+              }}>
                 ACCOUNTING <br />with{' '}<br />
-                <span className="font-sinhala text-blue-600">
+                <span className="font-sinhala" style={{
+                  textShadow: `
+                    1px 1px 0px #dbeafe,
+                    2px 2px 0px #bfdbfe,
+                    3px 3px 0px #93c5fd,
+                    4px 4px 8px rgba(59,130,246,0.2)
+                  `,
+                  color: '#1d4ed8',
+                  letterSpacing: '0.01em'
+                }}>
                   නුවන් <br />අබේරත්න
                 </span>
               </h1>
@@ -117,7 +176,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Promotional Section */}
+      {/* Promotional Section with Teacher Posters */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.h2
@@ -129,17 +188,50 @@ export default function LandingPage() {
           </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
+            {teachers.map((teacher, index) => (
               <motion.div
-                key={i}
+                key={teacher.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+                transition={{ delay: index * 0.2 }}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
-                <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4"></div>
-                <h3 className="text-xl font-semibold text-center mb-2">Teacher {i}</h3>
-                <p className="text-gray-600 text-center">Subject Specialist</p>
+                {/* Teacher Poster Image */}
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={teacher.poster}
+                    alt={`${teacher.name} - ${teacher.subject}`}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    onError={(e) => {
+                      // Fallback if image doesn't load
+                      // e.target.src = '/default-teacher-poster.jpg';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+                
+                {/* Teacher Information */}
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-center mb-2 text-gray-900 font-sinhala">
+                    {teacher.name}
+                  </h3>
+                  <p className="text-blue-600 text-center font-medium mb-2">
+                    {teacher.subject}
+                  </p>
+                  <p className="text-gray-600 text-center text-sm">
+                    {teacher.description}
+                  </p>
+                  
+                  {/* View Profile Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-200"
+                    onClick={() => router.push(`/teacher/${teacher.id}`)}
+                  >
+                    View Profile
+                  </motion.button>
+                </div>
               </motion.div>
             ))}
           </div>
