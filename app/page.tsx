@@ -25,47 +25,95 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <NavBar showAuth={true} />
-      
+
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-              Learn with{' '}
-              <span className="text-blue-600">Mr. Johnson</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
-              Advanced Mathematics & Physics Classes - Unlock your potential with personalized online tutoring
-            </p>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => router.push('/auth')}
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+          {/* Desktop Layout - Grid with content left, image right */}
+          <div className="hidden md:grid md:grid-cols-2 md:gap-12 md:items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-left"
             >
-              Start Learning Today
-            </motion.button>
-          </motion.div>
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+  ACCOUNTING <br />with{' '}<br />
+  <span className="font-sinhala text-blue-600">
+    නුවන් අබේරත්න
+  </span>
+</h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-16"
-          >
-            <div className="bg-white rounded-2xl shadow-2xl p-1 max-w-4xl mx-auto">
-              <img
-                src="/teacher-hero.jpg"
-                alt="Mr. Johnson Teaching"
-                className="w-full h-96 object-cover rounded-xl"
+
+             <p className="text-sm md:text-base text-gray-600 mb-8">
+  "ගිණුම්කරණයේ ගැඹුරු හැඟීම් තාක්ෂණයෙන් සරල කරමින්, සිසුන්ට නව දැනුමක් ගෙනෙන නව යුගයේ වෙබ් යෙදුමක්!"
+</p>
+
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => router.push('/auth')}
+                className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+              >
+                Start Learning Today
+              </motion.button>
+            </motion.div>
+
+            {/* Right Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <img 
+                src="/nuwan2.png" 
+                alt="Accounting Illustration" 
+                className="w-full h-auto rounded-lg shadow-2xl"
               />
+            </motion.div>
+          </div>
+
+          {/* Mobile Layout - Centered with background image */}
+          <div className="md:hidden relative min-h-[600px] flex items-center">
+            {/* Background Image */}
+            <div className="absolute inset-0 overflow-hidden rounded-lg">
+              <img 
+                src="/nuwan2.png" 
+                alt="Background" 
+                className="w-full h-full object-cover opacity-15"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/60 to-white/80"></div>
             </div>
-          </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center relative z-10 py-8 w-full"
+            >
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+                ACCOUNTING <br />with{' '}<br />
+                <span className="font-sinhala text-blue-600">
+                  නුවන් <br />අබේරත්න
+                </span>
+              </h1>
+
+              <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
+                "ගිණුම්කරණයේ ගැඹුරු හැඟීම් තාක්ෂණයෙන් සරල කරමින්, සිසුන්ට නව දැනුමක් ගෙනෙන නව යුගයේ වෙබ් යෙදුමක්!"
+              </p>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => router.push('/auth')}
+                className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+              >
+                Start Learning Today
+              </motion.button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -79,7 +127,7 @@ export default function LandingPage() {
           >
             Featured Teachers
           </motion.h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
               <motion.div
@@ -97,7 +145,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
