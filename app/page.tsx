@@ -35,7 +35,7 @@ export default function LandingPage() {
       id: 2,
       name: "සාලිය බණ්ඩාර",
       subject: "Economics",
-      poster: "/teacher-posters/saliya.jpg", 
+      poster: "/teacher-posters/saliya.jpg",
       // description: "Corporate Finance & Economics"
     },
     {
@@ -51,7 +51,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <NavBar showAuth={true} />
 
-{/* Hero Section */}
+      {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           {/* Desktop Layout - Grid with content left, image right */}
@@ -108,9 +108,9 @@ export default function LandingPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <img 
-                src="/nuwan2.png" 
-                alt="Accounting Illustration" 
+              <img
+                src="/nuwan2.png"
+                alt="Accounting Illustration"
                 className="w-full h-auto rounded-lg shadow-2xl"
               />
             </motion.div>
@@ -120,10 +120,10 @@ export default function LandingPage() {
           <div className="md:hidden relative min-h-[600px] flex items-center">
             {/* Background Image */}
             <div className="absolute inset-0 overflow-hidden rounded-lg">
-              <img 
-                src="/nuwan2.png" 
-                alt="Background" 
-                className="w-full h-full object-cover opacity-15"
+              <img
+                src="/nuwan2.png"
+                alt="Background"
+                className="w-full h-full object-cover opacity-50"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/60 to-white/80"></div>
             </div>
@@ -155,7 +155,7 @@ export default function LandingPage() {
                   color: '#1d4ed8',
                   letterSpacing: '0.01em'
                 }}>
-                  නුවන් <br />අබේරත්න
+                  නුවන් <span className="block mt-5">අබේරත්න</span>
                 </span>
               </h1>
 
@@ -198,7 +198,7 @@ export default function LandingPage() {
               >
                 {/* Teacher Poster Image */}
                 <div className="relative h-64 overflow-hidden">
-                  <img 
+                  <img
                     src={teacher.poster}
                     alt={`${teacher.name} - ${teacher.subject}`}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -209,7 +209,7 @@ export default function LandingPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
-                
+
                 {/* Teacher Information */}
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-center mb-2 text-gray-900 font-sinhala">
@@ -221,7 +221,7 @@ export default function LandingPage() {
                   <p className="text-gray-600 text-center text-sm">
                     {teacher.description}
                   </p>
-                  
+
                   {/* View Profile Button */}
                   <motion.button
                     whileHover={{ scale: 1.02 }}
